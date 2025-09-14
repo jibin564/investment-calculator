@@ -1,27 +1,77 @@
-# EssentialsPractice
+# Investment Calculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0-next.2.
+A modern, responsive investment calculator built with Angular 18. Enter your investment details and instantly see a year-by-year breakdown of your investment growth, interest earned, and total capital invested.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **User Input Form**: Collects initial investment, annual investment, expected return, and duration.
+- **Dynamic Results Table**: Displays yearly investment value, interest, total interest, and invested capital.
+- **Responsive UI**: Clean, mobile-friendly design using standalone Angular components.
+- **Type Safety**: Strongly typed models for input and results.
 
-## Code scaffolding
+Technologies Used
+Angular 18 (standalone components)
+TypeScript
+CSS
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Component Overview
 
-## Build
+### [`HeaderComponent`](src/app/header/header.component.ts)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Purpose**: Displays the app logo and title.
+- **Files**:  
+  - [header.component.ts](src/app/header/header.component.ts)  
+  - [header.component.html](src/app/header/header.component.html)  
+  - [header.component.css](src/app/header/header.component.css)
 
-## Running unit tests
+### [`UserInputComponent`](src/app/user-input/user-input.component.ts)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Purpose**: Collects user input for investment calculation.
+- **Logic**:  
+  - Uses Angular forms to bind input fields.
+  - Emits a `calculate` event with the entered values.
+- **Files**:  
+  - [user-input.component.ts](src/app/user-input/user-input.component.ts)  
+  - [user-input.component.html](src/app/user-input/user-input.component.html)  
+  - [user-input.component.css](src/app/user-input/user-input.component.css)
 
-## Running end-to-end tests
+### [`InvestmentResultsComponent`](src/app/investment-results/investment-results.component.ts)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Purpose**: Displays the calculated investment results in a table.
+- **Logic**:  
+  - Receives an array of yearly results via `@Input()`.
+  - Shows a message if no results are available.
+- **Files**:  
+  - [investment-results.component.ts](src/app/investment-results/investment-results.component.ts)  
+  - [investment-results.component.html](src/app/investment-results/investment-results.component.html)  
+  - [investment-results.component.css](src/app/investment-results/investment-results.component.css)  
+  - [result.model.ts](src/app/investment-results/result.model.ts)
 
-## Further help
+### [`AppComponent`](src/app/app.component.ts)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Purpose**: Root component that ties everything together.
+- **Logic**:  
+  - Handles the calculation logic when the user submits the form.
+  - Passes results to the results component.
+- **Files**:  
+  - [app.component.ts](src/app/app.component.ts)  
+  - [app.component.html](src/app/app.component.html)
+
+---
+
+## Models
+
+- [`investmentinput`](src/app/investment-input.model.ts): Defines the structure for user input.
+- [`result`](src/app/investment-results/result.model.ts): Defines the structure for each year's result.
+
+---
+
+## How It Works
+
+1. **User enters investment details** in the form.
+2. **On submit**, [`UserInputComponent`](src/app/user-input/user-input.component.ts) emits the data.
+3. [`AppComponent`](src/app/app.component.ts) receives the data, calculates yearly results, and updates the view.
+4. [`InvestmentResultsComponent`](src/app/investment-results/investment-results.component.ts) displays the results in a table.
+
+---
